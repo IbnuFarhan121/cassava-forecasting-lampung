@@ -31,10 +31,10 @@ Model Exponential Smoothing diuji menggunakan metrik evaluasi statistik terhadap
 
 ### 📈 Hasil Peramalan Produksi 2024
 - **Proyeksi Produksi Ubi Kayu 2024**: **7,895,158.39 Ton**
-- **Tren**: Diproyeksikan mengalami peningkatan dari tahun-tahun sebelumnya untuk mendukung ketersediaan pangan dan pasokan industri daerah[cite: 22, 24].
+- **Tren**: Diproyeksikan mengalami peningkatan dari tahun-tahun sebelumnya untuk mendukung ketersediaan pangan dan pasokan industri daerah.
 
 ---
-
+![Grafik Peramalan Produksi Ubi Kayu 2024](image/Gambar1.png)
 ## 🛠️ Tech Stack & Library
 
 - **Language**: R
