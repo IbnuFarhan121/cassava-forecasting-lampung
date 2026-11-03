@@ -1,0 +1,8 @@
+# R history and workspace files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Output html knitted
+*.html

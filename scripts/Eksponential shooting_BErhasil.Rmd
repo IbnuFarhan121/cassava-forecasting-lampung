@@ -1,0 +1,86 @@
+---
+title: "Untitled"
+author: "Ibnu Farhan Al-Ghifari"
+date: "2024-08-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Install dan load paket 'forecast'
+if (!require(forecast)) {
+  install.packages("forecast")
+}
+library(forecast)
+library(readxl)
+
+# Load data
+data2121 <- read_excel("C:/Users/ibnuf/OneDrive/Dokumen/Magang/reverensi/Ubi kayu/gabungan_revisi.xlsx")
+
+# Agregasi data untuk seluruh Lampung (tanpa memisahkan kabupaten/kota)
+agg_data_provinsi <- aggregate(Produksi ~ Tahun, data2121, sum)
+
+# Buat model Exponential Smoothing untuk seluruh Lampung
+model_provinsi <- ets(ts(agg_data_provinsi$Produksi, start = min(agg_data_provinsi$Tahun), frequency = 1))
+
+# Peramalan untuk tahun 2024-2025
+forecast_provinsi <- forecast(model_provinsi, h = 2)
+
+# Tampilkan hasil peramalan
+cat("Peramalan untuk seluruh Provinsi Lampung:\n")
+print(forecast_provinsi)
+
+# Ambil data aktual untuk tahun 2023
+actual_2023 <- agg_data_provinsi$Produksi[agg_data_provinsi$Tahun == 2023]
+
+# Ambil prediksi untuk tahun 2024
+pred_2024 <- forecast_provinsi$mean[1]
+
+# Hitung evaluasi model (MAD, MSE, MAPE) untuk tahun 2024
+if (length(actual_2023) > 0) {
+  mad_provinsi <- mean(abs(actual_2023 - pred_2024))
+  mse_provinsi <- mean((actual_2023 - pred_2024)^2)
+  mape_provinsi <- mean(abs((actual_2023 - pred_2024)/actual_2023) * 100)
+  
+  # Tampilkan hasil evaluasi
+  cat("Evaluasi Model untuk Provinsi Lampung pada tahun 2024:\n")
+  cat("Prediksi:", round(pred_2024, 2), "ton\n")
+  cat("MAD:", round(mad_provinsi, 2), "\n")
+  cat("MSE:", round(mse_provinsi, 2), "\n")
+  cat("MAPE:", round(mape_provinsi, 2), "%\n\n")
+} else {
+  cat("Tidak ada data aktual untuk tahun 2023.\n")
+}
+
+```
+
+
+```{r}
+# Ambil data aktual untuk tahun 2019-2023 dan prediksi untuk tahun 2024
+years <- c(agg_data_provinsi$Tahun, 2024)
+productions <- c(agg_data_provinsi$Produksi, forecast_provinsi$mean[1])
+
+# Buat dataframe untuk plot
+plot_data <- data.frame(
+  Tahun = factor(c("2019", "2020", "2021", "2022", "2023", "2024")),  # Ganti angka dengan tahun
+  Produksi = productions,
+  Source = c(rep("Aktual", length(agg_data_provinsi$Tahun)), "Prediksi 2024")
+)
+
+# Buat grafik
+ggplot(plot_data, aes(x = Tahun, y = Produksi, fill = Source)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  geom_text(aes(label = round(Produksi, 2)), vjust = -0.5, position = position_dodge(0.9)) +
+  labs(title = "Produksi  di Provinsi Lampung (2019-2024)",
+       x = "Tahun",
+       y = "Produksi (ton)",
+       fill = "Sumber") +
+  theme_minimal()
+
+```
+
+
+
