@@ -7,13 +7,13 @@
 
 ## 📌 Ringkasan Proyek
 
-Provinsi Lampung merupakan produsen ubi kayu (singkong) utama di Indonesia[cite: 22]. Fluktuasi hasil panen tahunan mempengaruhi ketersediaan bahan baku bagi industri pengolahan tapioka[cite: 22]. Proyek ini bertujuan meramalkan total produksi ubi kayu Provinsi Lampung pada tahun 2024 menggunakan pendekatan **Time Series Exponential Smoothing (ETS)** berdasarkan data historis produksi[cite: 22, 24].
+Provinsi Lampung merupakan produsen ubi kayu (singkong) utama di Indonesia. Fluktuasi hasil panen tahunan mempengaruhi ketersediaan bahan baku bagi industri pengolahan tapioka. Proyek ini bertujuan meramalkan total produksi ubi kayu Provinsi Lampung pada tahun 2024 menggunakan pendekatan **Time Series Exponential Smoothing (ETS)** berdasarkan data historis produksi.
 
 ---
 
 ## 📊 Dataset & Metodologi
 
-- **Dataset**: Data historis produksi ubi kayu se-Provinsi Lampung rentang tahun 2019–2023[cite: 22, 24].
+- **Dataset**: Data historis produksi ubi kayu se-Provinsi Lampung rentang tahun 2019–2023.
 - **Model**: Error, Trend, Seasonal (ETS) / Exponential Smoothing via library `forecast` R.
 - **Target Peramalan**: Proyeksi total produksi tahun 2024[cite: 22, 24].
 
@@ -25,9 +25,9 @@ Model Exponential Smoothing diuji menggunakan metrik evaluasi statistik terhadap
 
 | Metrik Evaluasi | Nilai | Keterangan Performa |
 |---|---|---|
-| **MAPE** (Mean Absolute Percentage Error) | **9.77%** | **Sangat Baik** (< 10%)[cite: 22, 24] |
-| **MAD** (Mean Absolute Deviation) | **702,603.40** | Unit kesalahan rata-rata dalam ton[cite: 22, 24] |
-| **MSE** (Mean Squared Error) | **493,651,525.70** | Varian kesalahan[cite: 22, 24] |
+| **MAPE** (Mean Absolute Percentage Error) | **9.77%** | **Sangat Baik** (< 10%) |
+| **MAD** (Mean Absolute Deviation) | **702,603.40** | Unit kesalahan rata-rata dalam ton |
+| **MSE** (Mean Squared Error) | **493,651,525.70** | Varian kesalahan |
 
 ### 📈 Hasil Peramalan Produksi 2024
 - **Proyeksi Produksi Ubi Kayu 2024**: **7,895,158.39 Ton**
@@ -37,11 +37,12 @@ Model Exponential Smoothing diuji menggunakan metrik evaluasi statistik terhadap
 
 ## 🛠️ Tech Stack & Library
 
-- **Language**: R[cite: 22, 24]
-- **Environment**: RStudio / R Markdown (`.Rmd`)[cite: 22, 24]
+- **Language**: R
+- **Environment**: RStudio / R Markdown (`.Rmd`)
 - **Libraries**:
-  - `forecast`: Pembuatan model Time Series ETS[cite: 24]
-  - `readxl`: Import dataset Excel[cite: 24]
-  - `ggplot2`: Visualisasi grafik tren produksi[cite: 24]
+  - `forecast`: Pembuatan model Time Series ETS
+  - `readxl`: Import dataset Excel
+  - `ggplot2`: Visualisasi grafik tren produksi
 
 ---
+![Grafik Peramalan Produksi Ubi Kayu 2024](image/Gambar1.png)
